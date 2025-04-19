@@ -1,4 +1,5 @@
 - hosts: site
+  become: true
   roles:
   - deploy
 
