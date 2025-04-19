@@ -24,6 +24,6 @@
     published_ports:
       - "{{ app_port }}:3000"
 
-- name: Print installed version
-  debug:
-    msg: "Version {{ semaphore_vars.task_details.incoming_version }} was installed."
+# - name: Print installed version
+#   debug:
+#     msg: "Version {{ semaphore_vars.task_details.incoming_version }} was installed."
