@@ -1,3 +1,11 @@
+- name: Dump all environment variables
+  ansible.builtin.shell: env
+  register: env_output
+
+- name: Show all ENV variables
+  ansible.builtin.debug:
+    var: env_output.stdout_lines
+    
 - name: Clone repo with Dockerfile
   ansible.builtin.git:
     repo: 'https://github.com/frankja2/nodejs-demoapp.git'
