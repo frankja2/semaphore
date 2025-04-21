@@ -24,6 +24,17 @@
     published_ports:
       - "{{ app_port }}:3000"
 
+- name: Wait for the app to be healthy
+  ansible.builtin.uri:
+    url: "http://{{ inventory_hostname }}:{{ app_port }}/health"
+    method: GET
+    status_code: 200
+    timeout: 5
+  register: healthcheck_response
+  retries: 10
+  delay: 6
+  until: healthcheck_response.status == 200
+
 # - name: Print installed version
 #   debug:
 #     msg: "Version {{ semaphore_vars.task_details.incoming_version }} was installed."
