@@ -26,7 +26,7 @@
 
 - name: Wait for the app to be healthy
   ansible.builtin.uri:
-    url: "http://{{ inventory_hostname }}:{{ app_port }}/health"
+    url: "http://{{ inventory_hostname }}:{{ app_port }}/info"
     method: GET
     status_code: 200
     timeout: 5
