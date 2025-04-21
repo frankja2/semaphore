@@ -1,6 +1,8 @@
-- name: Print final version
-  debug:
-    msg: "Version was built and ready for deployment."
+- name: Clone repo with Dockerfile
+  ansible.builtin.git:
+    repo: 'git@github.com:frankja2/nodejs-demoapp.git'
+    dest: '/tmp/dockerfile-repo'
+    version: main
 
 - name: Build Docker image
   community.docker.docker_image:
