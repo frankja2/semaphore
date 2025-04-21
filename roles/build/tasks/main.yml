@@ -7,7 +7,7 @@
 - name: Build Docker image
   community.docker.docker_image:
     build:
-      path: "Dockerfile"
+      path: "/tmp/dockerfile-repo/"
     name: "test"
     source: build
     push: no
