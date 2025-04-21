@@ -1,3 +1,8 @@
+- name: Wyświetl zmienną GIT_COMMIT_SHA
+  ansible.builtin.debug:
+    msg: "Commit SHA to: {{ lookup('env', 'GIT_COMMIT_SHA') }}"
+
+
 - name: Dump ALL keys and values from semaphore_vars individually
   ansible.builtin.debug:
     var: item
