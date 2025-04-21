@@ -1,5 +1,5 @@
 app_name: nodejs-demoapp
-app_image: "10.0.0.215:5000/nodejs-demoapp:{{GIT_COMMIT_SHA}}"
+app_image: "10.0.0.215:5000/nodejs-demoapp:{{ GIT_COMMIT_SHA }}"
 app_port: 3000
 registry_username: ""
 registry_password: ""
