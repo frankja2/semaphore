@@ -1,10 +1,7 @@
-- name: Dump all environment variables
-  ansible.builtin.shell: env
-  register: env_output
-
-- name: Show all ENV variables
+- name: Dump ALL keys and values from semaphore_vars individually
   ansible.builtin.debug:
-    var: env_output.stdout_lines
+    var: item
+  with_dict: "{{ semaphore_vars }}"
     
 - name: Clone repo with Dockerfile
   ansible.builtin.git:
