@@ -1,5 +1,6 @@
 app_name: nodejs-demoapp
-app_image: "10.0.0.215:5000/nodejs-demoapp:v1"
+app_image: "10.0.0.215:5000/nodejs-demoapp:{{ semaphore_vars.task_details.incoming_version }}"
 app_port: 3000
 registry_username: ""
 registry_password: ""
+GIT_COMMIT_SHA: ""

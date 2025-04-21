@@ -1,11 +1,35 @@
-- name: Print final version
-  debug:
-    msg: "Version was built and ready for deployment."
+- name: output branch
+  ansible.builtin.debug:
+     msg: "GIT_COMMIT_SHA={{ GIT_COMMIT_SHA }}"
 
-- name: Build Docker image
+- name: Wyświetl zmienną GIT_COMMIT_SHA
+  ansible.builtin.debug:
+    msg: "Commit SHA to: {{ lookup('env', 'GIT_COMMIT_SHA') }}"
+
+
+- name: Dump ALL keys and values from semaphore_vars individually
+  ansible.builtin.debug:
+    var: item
+  with_dict: "{{ semaphore_vars }}"
+
+- name: Dump all environment variables
+  ansible.builtin.shell: env
+  register: env_output
+
+- name: Show all ENV variables
+  ansible.builtin.debug:
+    var: env_output.stdout_lines
+    
+- name: Clone repo with Dockerfile
+  ansible.builtin.git:
+    repo: 'https://github.com/frankja2/nodejs-demoapp.git'
+    dest: '/tmp/dockerfile-repo'
+    version: main
+
+- name: Build and push Docker image
   community.docker.docker_image:
     build:
-      path: "Dockerfile"
-    name: "test"
+      path: "/tmp/dockerfile-repo"
+    name: "10.0.0.215:5000/nodejs-demoapp:{{ semaphore_vars.task_details.target_version }}"
     source: build
-    push: no
+    push: yes
