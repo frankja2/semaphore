@@ -8,6 +8,6 @@
   community.docker.docker_image:
     build:
       path: "/tmp/dockerfile-repo"
-    name: "10.0.0.215:5000/nodejs-demoapp:v2"
+    name: "10.0.0.215:5000/nodejs-demoapp:{{ semaphore_vars.task_details.target_version }}"
     source: build
     push: yes
