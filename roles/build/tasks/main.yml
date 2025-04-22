@@ -18,6 +18,7 @@
     version: main
 
 - name: Build and push Docker image
+  become: true
   community.docker.docker_image:
     build:
       path: "/tmp/dockerfile-repo"
