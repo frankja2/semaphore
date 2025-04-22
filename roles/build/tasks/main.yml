@@ -17,11 +17,11 @@
     dest: '/tmp/dockerfile-repo'
     version: main
 
-- name: Build and push Docker image
+- name: Build docker image
   become: true
-  community.docker.docker_image:
-    build:
-      path: "/tmp/dockerfile-repo"
-    name: "10.0.0.215:5000/nodejs-demoapp:{{ semaphore_vars.task_details.target_version }}"
-    source: build
-    push: yes
+  shell: docker build -t 10.0.0.215:5000/nodejs-demoapp:{{ semaphore_vars.task_details.target_version }} /tmp/dockerfile-repo
+
+- name: Push docker image
+  become: true
+  shell: docker push 10.0.0.215:5000/nodejs-demoapp:{{ semaphore_vars.task_details.target_version }}
+
