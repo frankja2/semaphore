@@ -13,7 +13,7 @@
     
 - name: Clone repo with Dockerfile
   ansible.builtin.git:
-    repo: 'https://github.com/frankja2/nodejs-demoapp.git'
+    repo: "{{ clone_url }}"
     dest: '/tmp/dockerfile-repo'
     version: main
 
