@@ -1,4 +1,4 @@
-app_name: {{ app_name }}
+app_name: "{{ app_name }}"
 app_image: "10.0.0.215:5000/{{ app_name }}:{{ semaphore_vars.task_details.incoming_version }}"
 app_port: 3000
 registry_username: ""
